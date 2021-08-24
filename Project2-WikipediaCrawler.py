@@ -7,19 +7,19 @@
 import requests
 
 
-# In[4]:
+
 
 
 from urllib.request import urlopen
 
 
-# In[6]:
+
 
 
 from bs4 import BeautifulSoup
 
 
-# In[10]:
+import re
 
 
 wiki_url = urlopen('https://en.wikipedia.org/wiki/Database')
@@ -51,8 +51,8 @@ for link in wiki_soup.find_all('a'):
         print(link.attrs['href'])
 
 
-# In[ ]:
-
-
+for link in wiki_soup.find('div', {'id':'bodyContent'}).find_all('a', href=re.compile('^(/wiki/)((?!:).)*$')):
+    if 'href' in link.attrs:
+        print(link.attrs['href'])
 
 
